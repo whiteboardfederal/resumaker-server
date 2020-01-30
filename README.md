@@ -55,3 +55,7 @@ Ant:          Apache Ant(TM) version 1.10.7 compiled on September 1 2019
 JVM:          11.0.5 (Oracle Corporation 11.0.5+10-LTS)
 OS:           Linux 5.3.0-26-generic amd64
 ```
+
+## Testing with Postman
+![Postman Visualize](/images/postman.png)
+To test with postman, select 'Basic Auth' in the Authorization tab and simply enter 'user' and the generated security password as listed above.

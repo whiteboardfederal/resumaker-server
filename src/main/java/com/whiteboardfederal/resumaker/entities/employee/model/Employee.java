@@ -13,14 +13,20 @@ import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
+@ApiModel(description = "Employee within Whiteboard Federal who can enter resume information.")
 public class Employee {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @ApiModelProperty(notes = "The database generated employee ID")
   private Long id;
 
   @NotNull(message = "firstName cannot be null")
   @Size(min = 2, max = 30)
+  @ApiModelProperty(notes = "The first name of the employee")
   private String firstName;
 
   @NotNull(message = "Middle initial cannot be null")

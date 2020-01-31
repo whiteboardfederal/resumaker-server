@@ -22,6 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.whiteboardfederal.resumaker.entities.employee.model.Employee;
 import com.whiteboardfederal.resumaker.entities.employee.repository.EmployeeRepository;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/api/v1/employee")
@@ -36,6 +40,11 @@ class EmployeeController {
         return employeeRepository.findAll();
     }
 
+    @ApiOperation(value = "Allows you to find the employee who's unique ID equals the value provided.", notes = "Will attempt to find the employee who's ID ties back to the value passed in via the URL.  If not found a 404 error will be thrown.")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved employee with matching ID."),
+            @ApiResponse(code = 401, message = "You are not authorized to view this employee"),
+            @ApiResponse(code = 403, message = "Accessing this employee is forbidden"),
+            @ApiResponse(code = 404, message = "The employee you were trying to reach is not found") })
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     Employee get(@PathVariable long id) {
         return employeeRepository.findById(id).get();

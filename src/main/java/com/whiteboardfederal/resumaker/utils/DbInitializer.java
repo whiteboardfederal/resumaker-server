@@ -1,10 +1,10 @@
 
-package com.whiteboardfederal.resumaker;
+package com.whiteboardfederal.resumaker.utils;
 
 import java.util.Date;
 
-import com.whiteboardfederal.resumaker.entities.employee.model.Employee;
-import com.whiteboardfederal.resumaker.entities.employee.repository.EmployeeRepository;
+import com.whiteboardfederal.resumaker.model.Employee;
+import com.whiteboardfederal.resumaker.model.EmployeeRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

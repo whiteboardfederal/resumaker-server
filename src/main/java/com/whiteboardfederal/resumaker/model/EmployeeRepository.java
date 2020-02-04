@@ -1,4 +1,4 @@
-package com.whiteboardfederal.resumaker.entities.employee.repository;
+package com.whiteboardfederal.resumaker.model;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.whiteboardfederal.resumaker.entities.employee.model.Employee;
+import com.whiteboardfederal.resumaker.model.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
@@ -22,5 +22,4 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
   // Paging
   List<Employee> findAllByOrderByLastNameAsc(Pageable pageable);
-
 }

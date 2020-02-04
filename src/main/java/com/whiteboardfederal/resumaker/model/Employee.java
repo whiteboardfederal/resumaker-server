@@ -1,4 +1,4 @@
-package com.whiteboardfederal.resumaker.entities.employee.model;
+package com.whiteboardfederal.resumaker.model;
 
 import java.util.Date;
 

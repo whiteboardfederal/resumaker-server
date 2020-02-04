@@ -1,4 +1,4 @@
-package com.whiteboardfederal.resumaker.entities.employee.controller;
+package com.whiteboardfederal.resumaker.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.whiteboardfederal.resumaker.entities.employee.model.Employee;
-import com.whiteboardfederal.resumaker.entities.employee.repository.EmployeeRepository;
+import com.whiteboardfederal.resumaker.model.Employee;
+import com.whiteboardfederal.resumaker.model.EmployeeRepository;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController

@@ -41,7 +41,7 @@ public class DbInitializer implements CommandLineRunner {
     this.educationRepository.deleteAll();
 
     Date creationDate = new Date();
-    Employee employee = new Employee("Jarrett", "G", "Horton", "5555555555", "5555555555", "Software Engineer 1",
+    Employee employee = new Employee("Jarrett", "Garner", "Horton", "5555555555", "5555555555", "Software Engineer 1",
         "123 Test Street", "jhorton@whiteboardfederal.com", creationDate);
     WorkHistory workHistory = new WorkHistory(1L, "Anthem Inc.", "Data Center Intern", creationDate, creationDate);
     Education education = new Education(1L, "Bridgewater College", "CS Bachelor");

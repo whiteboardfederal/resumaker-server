@@ -13,6 +13,8 @@ import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.lang.Nullable;
+
 @Entity
 public class Employee {
   @Id
@@ -23,9 +25,9 @@ public class Employee {
   @Size(min = 2, max = 30)
   private String firstName;
 
-  @NotNull(message = "Middle initial cannot be null")
-  @Size(min = 1, max = 1)
-  private String middleInitial;
+  @Nullable
+  @Size(min = 2, max = 30)
+  private String middleName;
 
   @NotNull(message = "lastName cannot be null")
   @Size(min = 2, max = 30)
@@ -53,10 +55,10 @@ public class Employee {
   public Employee() {
   }
 
-  public Employee(String firstName, String middleInitial, String lastName,  String cellPhoneNumber,
+  public Employee(String firstName, String middleName, String lastName, String cellPhoneNumber,
       String workPhoneNumber, String workTitle, String address, String email, Date creationDate) {
     this.firstName = firstName;
-    this.middleInitial = middleInitial;
+    this.middleName = middleName;
     this.lastName = lastName;
     this.cellPhoneNumber = cellPhoneNumber;
     this.workPhoneNumber = workPhoneNumber;
@@ -84,13 +86,13 @@ public class Employee {
     this.firstName = firstName;
   }
 
-  /* Middle Initial */
-  public String getMiddleInitial() {
-    return middleInitial;
+  /* Middle Name */
+  public String getMiddleName() {
+    return middleName;
   }
 
-  public void setMiddleInitial(String middleInitial) {
-    this.middleInitial = middleInitial;
+  public void setMiddleName(String middleName) {
+    this.middleName = middleName;
   }
 
   /* Last Name */

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.whiteboardfederal.resumaker.model.Employee;
-import com.whiteboardfederal.resumaker.model.EmployeeRepository;
+import com.whiteboardfederal.resumaker.repository.EmployeeRepository;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController

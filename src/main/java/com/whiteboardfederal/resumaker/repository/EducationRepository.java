@@ -1,4 +1,4 @@
-package com.whiteboardfederal.resumaker.model;
+package com.whiteboardfederal.resumaker.repository;
 
 import java.util.List;
 

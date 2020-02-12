@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.whiteboardfederal.resumaker.model.Education;
-import com.whiteboardfederal.resumaker.model.EducationRepository;
+import com.whiteboardfederal.resumaker.repository.EducationRepository;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -28,28 +28,28 @@ import com.whiteboardfederal.resumaker.model.EducationRepository;
 class EducationController {
 
   @Autowired
-  private EducationRepository EducationRepository;
+  private EducationRepository educationRepository;
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   List<Education> query(@RequestParam(required = false, defaultValue = "false") Boolean includeChildren,
       @RequestParam Map<String, String> allParams) {
-    return EducationRepository.findAll();
+    return educationRepository.findAll();
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   Education create(@RequestBody Education p, @RequestHeader Map<String, String> headers) {
-    return EducationRepository.save(p);
+    return educationRepository.save(p);
   }
 
   @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   Education overwrite(@RequestBody Education p, @PathVariable long id) {
     p.setId(id);
-    return EducationRepository.save(p);
+    return educationRepository.save(p);
   }
 
   @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseStatus(value = HttpStatus.OK)
   void delete(@PathVariable long id) {
-    EducationRepository.deleteById(id);
+    educationRepository.deleteById(id);
   }
 }

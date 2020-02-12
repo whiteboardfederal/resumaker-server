@@ -4,11 +4,11 @@ package com.whiteboardfederal.resumaker.utils;
 import java.util.Date;
 
 import com.whiteboardfederal.resumaker.model.Education;
-import com.whiteboardfederal.resumaker.model.EducationRepository;
+import com.whiteboardfederal.resumaker.repository.EducationRepository;
 import com.whiteboardfederal.resumaker.model.Employee;
-import com.whiteboardfederal.resumaker.model.EmployeeRepository;
+import com.whiteboardfederal.resumaker.repository.EmployeeRepository;
 import com.whiteboardfederal.resumaker.model.WorkHistory;
-import com.whiteboardfederal.resumaker.model.WorkHistoryRepository;
+import com.whiteboardfederal.resumaker.repository.WorkHistoryRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.whiteboardfederal.resumaker.model.Education;
 import com.whiteboardfederal.resumaker.repository.EducationRepository;
+import com.whiteboardfederal.resumaker.utils.EntityMissingException;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -34,6 +35,11 @@ class EducationController {
   List<Education> query(@RequestParam(required = false, defaultValue = "false") Boolean includeChildren,
       @RequestParam Map<String, String> allParams) {
     return educationRepository.findAll();
+  }
+
+  @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  Education get(@PathVariable final long id) {
+    return educationRepository.findById(id).orElseThrow(() -> new EntityMissingException("education", id));
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

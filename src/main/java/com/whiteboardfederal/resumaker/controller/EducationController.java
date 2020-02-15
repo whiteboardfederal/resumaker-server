@@ -32,8 +32,7 @@ class EducationController {
   private EducationRepository educationRepository;
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  List<Education> query(@RequestParam(required = false, defaultValue = "false") Boolean includeChildren,
-      @RequestParam Map<String, String> allParams) {
+  List<Education> query() {
     return educationRepository.findAll();
   }
 
@@ -43,7 +42,7 @@ class EducationController {
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  Education create(@RequestBody Education p, @RequestHeader Map<String, String> headers) {
+  Education create(@RequestBody Education p) {
     return educationRepository.save(p);
   }
 

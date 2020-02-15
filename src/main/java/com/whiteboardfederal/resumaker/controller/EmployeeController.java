@@ -32,8 +32,7 @@ class EmployeeController {
     private EmployeeRepository employeeRepository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    List<Employee> query(@RequestParam(required = false, defaultValue = "false") final Boolean includeChildren,
-            @RequestParam final Map<String, String> allParams) {
+    List<Employee> query() {
         return employeeRepository.findAll();
     }
 
@@ -43,7 +42,7 @@ class EmployeeController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    Employee create(@RequestBody final Employee p, @RequestHeader final Map<String, String> headers) {
+    Employee create(@RequestBody final Employee p) {
         return employeeRepository.save(p);
     }
 

@@ -40,6 +40,11 @@ dependencies {
 	}
 	testImplementation 'io.projectreactor:reactor-test'
 	// testImplementation 'org.springframework.security:spring-security-test'
+
+	//SWAGGER
+	compile("com.google.guava:guava:23.0")
+	compile("io.springfox:springfox-swagger2:2.9.2")
+	compile("io.springfox:springfox-swagger-ui:2.9.2")
 }
 
 dependencyManagement {

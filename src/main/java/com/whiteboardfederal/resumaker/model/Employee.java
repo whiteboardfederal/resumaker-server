@@ -1,11 +1,9 @@
 package com.whiteboardfederal.resumaker.model;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -51,6 +49,9 @@ public class Employee {
 
   @PastOrPresent
   private Date creationDate = new Date();
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+  private List<Certification> certifications;
 
   public Employee() {
   }
@@ -156,5 +157,13 @@ public class Employee {
 
   public void setCreationDate(Date creationDate) {
     this.creationDate = creationDate;
+  }
+
+  public List<Certification> getCertifications() {
+    return certifications;
+  }
+
+  public void setCertifications(List<Certification> certifications) {
+    this.certifications = certifications;
   }
 }

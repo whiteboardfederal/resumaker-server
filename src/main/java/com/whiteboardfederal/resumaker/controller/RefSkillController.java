@@ -24,7 +24,7 @@ import com.whiteboardfederal.resumaker.repository.RefSkillRepository;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(value = "/api/v1/ref_skill")
+@RequestMapping(value = "/api/v1/RefSkill")
 class RefSkillController {
 
     @Autowired

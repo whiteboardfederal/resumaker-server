@@ -19,37 +19,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.whiteboardfederal.resumaker.model.Skill;
-import com.whiteboardfederal.resumaker.model.SkillRepository;
+import com.whiteboardfederal.resumaker.model.RefSkill;
+import com.whiteboardfederal.resumaker.repository.RefSkillRepository;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(value = "/api/v1/skill")
-class SkillController {
+@RequestMapping(value = "/api/v1/ref_skill")
+class RefSkillController {
 
     @Autowired
-    private SkillRepository skillRepository;
+    private RefSkillRepository refSkillRepository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    List<Skill> query(@RequestParam(required = false, defaultValue = "false") Boolean includeChildren,
-            @RequestParam Map<String, String> allParams) {
-        return skillRepository.findAll();
+    List<RefSkill> query() {
+        return refSkillRepository.findAll();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    Skill create(@RequestBody Skill p, @RequestHeader Map<String, String> headers) {
-        return skillRepository.save(p);
+    RefSkill create(@RequestBody RefSkill p) {
+        return refSkillRepository.save(p);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    Skill overwrite(@RequestBody Skill p, @PathVariable long id) {
+    RefSkill overwrite(@RequestBody RefSkill p, @PathVariable long id) {
         p.setId(id);
-        return skillRepository.save(p);
+        return refSkillRepository.save(p);
     }
 
     @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     void delete(@PathVariable long id) {
-        skillRepository.deleteById(id);
+        refSkillRepository.deleteById(id);
     }
 }

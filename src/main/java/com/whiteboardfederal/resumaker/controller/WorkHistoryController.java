@@ -31,13 +31,12 @@ class WorkHistoryController {
     private WorkHistoryRepository workHistoryRepository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    List<WorkHistory> query(@RequestParam(required = false, defaultValue = "false") Boolean includeChildren,
-            @RequestParam Map<String, String> allParams) {
+    List<WorkHistory> query(@RequestParam Map<String, String> allParams) {
         return workHistoryRepository.findAll();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    WorkHistory create(@RequestBody WorkHistory p, @RequestHeader Map<String, String> headers) {
+    WorkHistory create(@RequestBody WorkHistory p) {
         return workHistoryRepository.save(p);
     }
 

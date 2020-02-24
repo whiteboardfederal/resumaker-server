@@ -40,7 +40,6 @@ class EmployeeController {
     Employee get(@PathVariable final long id) {
         return employeeRepository.findById(id).orElseThrow(() -> new EntityMissingException("employee", id));
     }
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     Employee create(@RequestBody final Employee p) {
         return employeeRepository.save(p);

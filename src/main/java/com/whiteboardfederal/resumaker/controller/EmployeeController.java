@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.whiteboardfederal.resumaker.model.Employee;
-import com.whiteboardfederal.resumaker.model.EmployeeRepository;
+import com.whiteboardfederal.resumaker.repository.EmployeeRepository;
+import com.whiteboardfederal.resumaker.utils.EntityMissingException;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -31,30 +32,29 @@ class EmployeeController {
     private EmployeeRepository employeeRepository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    List<Employee> query(@RequestParam(required = false, defaultValue = "false") Boolean includeChildren,
-            @RequestParam Map<String, String> allParams) {
+    List<Employee> query() {
         return employeeRepository.findAll();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    Employee get(@PathVariable long id) {
-        return employeeRepository.findById(id).get();
+    Employee get(@PathVariable final long id) {
+        return employeeRepository.findById(id).orElseThrow(() -> new EntityMissingException("employee", id));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    Employee create(@RequestBody Employee p, @RequestHeader Map<String, String> headers) {
+    Employee create(@RequestBody final Employee p) {
         return employeeRepository.save(p);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    Employee overwrite(@RequestBody Employee p, @PathVariable long id) {
+    Employee overwrite(@RequestBody final Employee p, @PathVariable final long id) {
         p.setId(id);
         return employeeRepository.save(p);
     }
 
     @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    void delete(@PathVariable long id) {
+    void delete(@PathVariable final long id) {
         employeeRepository.deleteById(id);
     }
 }

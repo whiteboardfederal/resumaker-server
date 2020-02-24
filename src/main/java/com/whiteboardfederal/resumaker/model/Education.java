@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Education {
@@ -16,8 +17,10 @@ public class Education {
   @NotNull(message = "Must be associated with an employee")
   private Long employeeId;
 
+  @Size(min = 2, max = 40)
   private String school;
 
+  @Size(min = 2, max = 40)
   private String degree;
 
   public Education() {

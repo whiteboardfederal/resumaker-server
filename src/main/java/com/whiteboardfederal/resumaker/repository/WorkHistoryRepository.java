@@ -1,8 +1,8 @@
-package com.whiteboardfederal.resumaker.model;
+package com.whiteboardfederal.resumaker.repository;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.whiteboardfederal.resumaker.model.WorkHistory;;
+import com.whiteboardfederal.resumaker.model.WorkHistory;
 
 public interface WorkHistoryRepository extends JpaRepository<WorkHistory, Long> {
 

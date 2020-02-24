@@ -4,11 +4,11 @@ package com.whiteboardfederal.resumaker.utils;
 import java.util.Date;
 
 import com.whiteboardfederal.resumaker.model.Education;
-import com.whiteboardfederal.resumaker.model.EducationRepository;
+import com.whiteboardfederal.resumaker.repository.EducationRepository;
 import com.whiteboardfederal.resumaker.model.Employee;
-import com.whiteboardfederal.resumaker.model.EmployeeRepository;
+import com.whiteboardfederal.resumaker.repository.EmployeeRepository;
 import com.whiteboardfederal.resumaker.model.WorkHistory;
-import com.whiteboardfederal.resumaker.model.WorkHistoryRepository;
+import com.whiteboardfederal.resumaker.repository.WorkHistoryRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -41,7 +41,7 @@ public class DbInitializer implements CommandLineRunner {
     this.educationRepository.deleteAll();
 
     Date creationDate = new Date();
-    Employee employee = new Employee("Jarrett", "G", "Horton", "5555555555", "5555555555", "Software Engineer 1",
+    Employee employee = new Employee("Jarrett", "Garner", "Horton", "5555555555", "5555555555", "Software Engineer 1",
         "123 Test Street", "jhorton@whiteboardfederal.com", creationDate);
     WorkHistory workHistory = new WorkHistory(1L, "Anthem Inc.", "Data Center Intern", creationDate, creationDate);
     Education education = new Education(1L, "Bridgewater College", "CS Bachelor");

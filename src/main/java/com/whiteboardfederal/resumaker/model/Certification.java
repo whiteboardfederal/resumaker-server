@@ -20,6 +20,37 @@ public class Certification {
 //    @JoinColumn(name = "ref_certification_id")
 //    private RefCertification refCertification;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Date getDateCertified() {
+        return dateCertified;
+    }
+
+    public void setDateCertified(Date dateCertified) {
+        this.dateCertified = dateCertified;
+    }
+
+//    public RefCertification getRefCertification() {
+//        return refCertification;
+//    }
+//
+//    public void setRefCertification(RefCertification refCertification) {
+//        this.refCertification = refCertification;
+//    }
 }
 
 

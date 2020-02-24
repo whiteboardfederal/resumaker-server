@@ -28,13 +28,13 @@ public class CertificationController {
                 .orElseThrow(() -> new EntityMissingException("certification", id));
     }
 
-    @PutMapping(value = "/:id")
+    @PutMapping(value = "/{id}")
     Certification update(@PathVariable final Long id, @RequestBody Certification certification) {
         certification.setId(id);
         return certificationRepository.save(certification);
     }
 
-    @DeleteMapping(value = "/:id")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable final Long id) {
         certificationRepository.deleteById(id);

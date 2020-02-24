@@ -10,6 +10,9 @@ import com.whiteboardfederal.resumaker.repository.EmployeeRepository;
 import com.whiteboardfederal.resumaker.model.WorkHistory;
 import com.whiteboardfederal.resumaker.repository.WorkHistoryRepository;
 
+import com.whiteboardfederal.resumaker.model.RefDegree;
+import com.whiteboardfederal.resumaker.repository.RefDegreeRepository;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -27,11 +30,14 @@ public class DbInitializer implements CommandLineRunner {
   private final WorkHistoryRepository workHistoryRepository;
   private final EducationRepository educationRepository;
 
+  private final RefDegreeRepository refDegreeRepository;
+
   public DbInitializer(final EmployeeRepository employeeRepository, final WorkHistoryRepository workHistoryRepository,
-      final EducationRepository educationRepository) {
+      final EducationRepository educationRepository, final RefDegreeRepository refDegreeRepository) {
     this.employeeRepository = employeeRepository;
     this.workHistoryRepository = workHistoryRepository;
     this.educationRepository = educationRepository;
+    this.refDegreeRepository = refDegreeRepository;
   }
 
   @Override
@@ -39,6 +45,7 @@ public class DbInitializer implements CommandLineRunner {
     this.employeeRepository.deleteAll();
     this.workHistoryRepository.deleteAll();
     this.educationRepository.deleteAll();
+    this.refDegreeRepository.deleteAll();
 
     Date creationDate = new Date();
     Employee employee = new Employee("Jarrett", "Garner", "Horton", "5555555555", "5555555555", "Software Engineer 1",

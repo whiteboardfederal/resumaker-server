@@ -10,6 +10,8 @@ The current default username is 'user'. For now, your password will be output in
 Using generated security password: 3c971a67-a225-4ea6-ba45-46be6a41ea76
 ```
 
+## Swagger
+Head over to http://localhost:8080/swagger-ui.html to view our api documentation.
 
 ## Install Gradle on Ubuntu
 Update and install java-8

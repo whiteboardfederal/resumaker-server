@@ -36,15 +36,8 @@ class SkillsController {
 
   @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   Skills overwrite(@RequestBody Skills updateSkill, @PathVariable long id) {
-    return SkillsRepository.findById(id).map(skills -> {
-      skills.setEmployeeId(updateSkill.getEmployeeId());
-      skills.setSkill(updateSkill.getSkill());
-      skills.setYears(updateSkill.getYears());
-      return SkillsRepository.save(skills);
-    }).orElseGet(()->{
       updateSkill.setId(id);
       return SkillsRepository.save(updateSkill);
-    });
   }
 
   @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)

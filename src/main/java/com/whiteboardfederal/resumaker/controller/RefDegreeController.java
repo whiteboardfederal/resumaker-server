@@ -35,14 +35,8 @@ class RefDegreeController {
 
   @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
   RefDegree overwrite(@RequestBody RefDegree updateDegree, @PathVariable long id) {
-    return RefDegreeRepository.findById(id).map(refDegree -> {
-      refDegree.setValue(updateDegree.getValue());
-      refDegree.setDescription(updateDegree.getDescription());
-      return RefDegreeRepository.save(refDegree);
-    }).orElseGet(()->{
-      updateDegree.setId(id);
-      return RefDegreeRepository.save(updateDegree);
-    });
+    updateDegree.setId(id);
+    return RefDegreeRepository.save(updateDegree);
   }
 
   @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)

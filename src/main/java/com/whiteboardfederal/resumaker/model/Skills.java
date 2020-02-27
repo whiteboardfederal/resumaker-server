@@ -1,9 +1,6 @@
 package com.whiteboardfederal.resumaker.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -12,25 +9,29 @@ public class Skills {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @NotNull(message = "Must be associated with an employee")
-  private Long employeeId;
+  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @JoinColumn(name = "employee_id")
+  private Employee employee;
 
-  @NotNull(message = "Must be associated with a skill")
-  private Long refSkill; //Change Type to RefSkill when it's committed.
+//  uncomment once RefSkill is committed.
+//  @OneToOne
+//  @JoinColumn(name = "ref_skill_id")
+//  private RefSkill refSkill;
 
   @NotNull(message = "Must associate number of years of experience.")
+  @JoinColumn(name = "years_of_experience")
   private double yearsOfExperience;
 
   public Skills() {
   }
 
   public Skills(
-          Long employeeId,
-          Long refSkill,
+          Employee employee,
+//          RefSkill refSkill,
           double yearsOfExperience
   ) {
-    this.employeeId = employeeId;
-    this.refSkill = refSkill;
+    this.employee = employee;
+//    this.refSkill = refSkill;
     this.yearsOfExperience = yearsOfExperience;
   }
 
@@ -42,19 +43,17 @@ public class Skills {
     this.id = id;
   }
 
-  public Long getEmployeeId() {
-    return this.employeeId;
+  public Employee getEmployee() {
+    return this.employee;
   }
 
-  public void setEmployeeId(Long employeeId) {
-    this.employeeId = employeeId;
+  public void setEmployee(Employee employeeId) {
+    this.employee = employee;
   }
 
-  public Long getSkill() {
-    return this.refSkill;
-  }
-
-  public void setSkill(Long refSkill) { this.refSkill = refSkill;  }
+//  public Long getSkill() { return this.refSkill; }
+//
+//  public void setSkill(Long refSkill) { this.refSkill = refSkill;  }
 
   public double getYears() {
     return this.yearsOfExperience;

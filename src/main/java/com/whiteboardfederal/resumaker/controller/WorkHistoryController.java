@@ -36,14 +36,14 @@ class WorkHistoryController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    WorkHistory create(@RequestBody WorkHistory p) {
-        return workHistoryRepository.save(p);
+    WorkHistory create(@RequestBody WorkHistory work_history) {
+        return workHistoryRepository.save(work_history);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    WorkHistory overwrite(@RequestBody WorkHistory p, @PathVariable long id) {
-        p.setId(id);
-        return workHistoryRepository.save(p);
+    WorkHistory overwrite(@RequestBody WorkHistory work_history, @PathVariable long id) {
+        work_history.setId(id);
+        return workHistoryRepository.save(work_history);
     }
 
     @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)

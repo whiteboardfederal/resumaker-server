@@ -36,14 +36,14 @@ class RefSkillController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    RefSkill create(@RequestBody RefSkill p) {
-        return refSkillRepository.save(p);
+    RefSkill create(@RequestBody RefSkill skill) {
+        return refSkillRepository.save(skill);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    RefSkill overwrite(@RequestBody RefSkill p, @PathVariable long id) {
-        p.setId(id);
-        return refSkillRepository.save(p);
+    RefSkill overwrite(@RequestBody RefSkill skill, @PathVariable long id) {
+        skill.setId(id);
+        return refSkillRepository.save(skill);
     }
 
     @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)

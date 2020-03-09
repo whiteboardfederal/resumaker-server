@@ -19,6 +19,7 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
   public ResponseEntity<Object> entityNotFound(final EntityMissingException e) {
     System.out.println("Called");
     ApiError err = new ApiError(HttpStatus.NOT_FOUND, e.getMessage(), e.getMessage());
+    e.printStackTrace();
     return new ResponseEntity<Object>(err, new HttpHeaders(), err.getStatus());
   }
 
@@ -26,6 +27,7 @@ public class GlobalControllerExceptionHandler extends ResponseEntityExceptionHan
   public ResponseEntity<Object> fallbackHandler(final RuntimeException e) {
     System.out.println("Called");
     ApiError err = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "An unhandled runtime exception occurred", e.getMessage());
+    e.printStackTrace();
     return new ResponseEntity<Object>(err, new HttpHeaders(), err.getStatus());
   }
 

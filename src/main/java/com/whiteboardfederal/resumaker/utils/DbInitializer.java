@@ -5,8 +5,8 @@ import java.util.Date;
 
 import com.whiteboardfederal.resumaker.model.Education;
 import com.whiteboardfederal.resumaker.repository.EducationRepository;
-import com.whiteboardfederal.resumaker.model.Employee;
-import com.whiteboardfederal.resumaker.repository.EmployeeRepository;
+import com.whiteboardfederal.resumaker.model.Person;
+import com.whiteboardfederal.resumaker.repository.PersonRepository;
 import com.whiteboardfederal.resumaker.model.WorkHistory;
 import com.whiteboardfederal.resumaker.repository.WorkHistoryRepository;
 
@@ -23,11 +23,11 @@ import org.springframework.stereotype.Component;
 @Component
 @ConditionalOnProperty(prefix = "spring.dbinit", name = "create", matchIfMissing = true)
 public class DbInitializer implements CommandLineRunner {
-  private final EmployeeRepository employeeRepository;
+  private final PersonRepository employeeRepository;
   private final WorkHistoryRepository workHistoryRepository;
   private final EducationRepository educationRepository;
 
-  public DbInitializer(final EmployeeRepository employeeRepository, final WorkHistoryRepository workHistoryRepository,
+  public DbInitializer(final PersonRepository employeeRepository, final WorkHistoryRepository workHistoryRepository,
       final EducationRepository educationRepository) {
     this.employeeRepository = employeeRepository;
     this.workHistoryRepository = workHistoryRepository;
@@ -41,7 +41,7 @@ public class DbInitializer implements CommandLineRunner {
     this.educationRepository.deleteAll();
 
     Date creationDate = new Date();
-    Employee employee = new Employee("Jarrett", "Garner", "Horton", "5555555555", "5555555555", "Software Engineer 1",
+    Person employee = new Person("Jarrett", "Garner", "Horton", "5555555555", "5555555555", "Software Engineer 1",
         "123 Test Street", "jhorton@whiteboardfederal.com", creationDate);
     WorkHistory workHistory = new WorkHistory(1L, "Anthem Inc.", "Data Center Intern", creationDate, creationDate);
     Education education = new Education(1L, "Bridgewater College", "CS Bachelor");

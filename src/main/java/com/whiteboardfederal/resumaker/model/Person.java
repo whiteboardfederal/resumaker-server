@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @ApiModel(description = "This is an employee")
-public class Employee {
+public class Person {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @ApiModelProperty(notes = "The database generated employee ID")
@@ -66,10 +66,10 @@ public class Employee {
   @ApiModelProperty(notes = "The date the employee was created in the system")
   private Date creationDate = new Date();
 
-  public Employee() {
+  public Person() {
   }
 
-  public Employee(String firstName, String middleName, String lastName, String cellPhoneNumber,
+  public Person(String firstName, String middleName, String lastName, String cellPhoneNumber,
       String workPhoneNumber, String workTitle, String address, String email, Date creationDate) {
     this.firstName = firstName;
     this.middleName = middleName;

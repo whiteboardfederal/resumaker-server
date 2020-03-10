@@ -2,10 +2,6 @@ package com.whiteboardfederal.resumaker.controller;
 
 import java.util.List;
 
-import com.whiteboardfederal.resumaker.model.Education;
-import com.whiteboardfederal.resumaker.repository.EducationRepository;
-import com.whiteboardfederal.resumaker.utils.EntityMissingException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.whiteboardfederal.resumaker.exceptions.EntityNotFoundException;
+import com.whiteboardfederal.resumaker.model.Education;
+import com.whiteboardfederal.resumaker.repository.EducationRepository;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -48,8 +48,8 @@ class EducationController {
       @ApiResponse(code = 403, message = "Accessing this education entity is forbidden"),
       @ApiResponse(code = 404, message = "The education entity you were trying to reach is not found") })
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  Education get(@PathVariable final long id) {
-    return educationRepository.findById(id).orElseThrow(() -> new EntityMissingException("education", id));
+  Education get(@PathVariable final long id) throws EntityNotFoundException {
+    return educationRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("education", String.valueOf(id)));
   }
 
   @ApiOperation(value = "Allows you to create an education entity.")

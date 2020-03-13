@@ -7,13 +7,6 @@ import javax.persistence.Id;
 
 import javax.validation.constraints.NotNull;
 
-//What are these imports?
-/*
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size; //Should I use this for size of description??
-*/
-
 @Entity
 public class RefCertification {
   @Id

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.whiteboardfederal.resumaker.exceptions.EntityNotFoundException;
 import com.whiteboardfederal.resumaker.model.WorkHistory;
 import com.whiteboardfederal.resumaker.repository.WorkHistoryRepository;
 
@@ -32,46 +33,32 @@ import io.swagger.annotations.ApiResponses;
 class WorkHistoryController {
 
     @Autowired
-    private WorkHistoryRepository workHistoryRepository;
+  private WorkHistoryRepository workHistoryRepository;
 
-    @ApiOperation(value = "Allows you to find all the work history entities provided.")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved work history entities."),
-            @ApiResponse(code = 401, message = "You are not authorized to view work history entities"),
-            @ApiResponse(code = 403, message = "Accessing this work history entities is forbidden"),
-            @ApiResponse(code = 404, message = "The work history entities you were trying to reach are not found") })
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    List<WorkHistory> query(@RequestParam Map<String, String> allParams) {
-        return workHistoryRepository.findAll();
-    }
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  List<WorkHistory> findAll() {
+    return workHistoryRepository.findAll();
+  }
 
-    @ApiOperation(value = "Allows you to create an work history entity.")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully created work history entity."),
-            @ApiResponse(code = 401, message = "You are not authorized to create work history entity"),
-            @ApiResponse(code = 403, message = "Creating this work history entity is forbidden") })
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    WorkHistory create(@RequestBody WorkHistory workHistory) {
-        return workHistoryRepository.save(workHistory);
-    }
+  @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  WorkHistory get(@PathVariable final long id) throws EntityNotFoundException {
+    return workHistoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Work History", String.valueOf(id)));
+  }
 
-    @ApiOperation(value = "Allows you to update an work history entity with provided id.")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully updated the work history entity with provided id."),
-            @ApiResponse(code = 401, message = "You are not authorized to update work history entity"),
-            @ApiResponse(code = 403, message = "Updating this work history entity is forbidden"),
-            @ApiResponse(code = 404, message = "The work history entity you were trying to reach is not found") })
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    WorkHistory overwrite(@RequestBody WorkHistory workHistory, @PathVariable long id) {
-        workHistory.setId(id);
-        return workHistoryRepository.save(workHistory);
-    }
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  WorkHistory create(@RequestBody WorkHistory newWorkHistory) {
+    return workHistoryRepository.save(newWorkHistory);
+  }
 
-    @ApiOperation(value = "Allows you to delete an work history entity with provided id.")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully deleted the work history entity with provided id."),
-            @ApiResponse(code = 401, message = "You are not authorized to delete work history entity"),
-            @ApiResponse(code = 403, message = "Deleting this work history entity is forbidden"),
-            @ApiResponse(code = 404, message = "The work history entity you were trying to reach is not found") })
-    @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.OK)
-    void delete(@PathVariable long id) {
-        workHistoryRepository.deleteById(id);
-    }
+  @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+  WorkHistory overwrite(@RequestBody WorkHistory workHistory, @PathVariable long id) {
+      workHistory.setId(id);
+      return workHistoryRepository.save(workHistory);
+  }
+
+  @DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+  @ResponseStatus(value = HttpStatus.OK)
+  void delete(@PathVariable long id) {
+    workHistoryRepository.deleteById(id);
+  }
 }

@@ -30,17 +30,17 @@ import org.springframework.stereotype.Component;
 @Component
 @ConditionalOnProperty(prefix = "spring.dbinit", name = "create", matchIfMissing = true)
 public class DbInitializer implements CommandLineRunner {
-  private final PersonRepository employeeRepository;
+  private final PersonRepository personRepository;
   private final WorkHistoryRepository workHistoryRepository;
   private final EducationRepository educationRepository;
   private final RefCertificationRepository refCertificationRepository;
   private final RefDegreeRepository refDegreeRepository;
   private final SkillsRepository skillsRepository;
 
-  public DbInitializer(final EmployeeRepository employeeRepository, final WorkHistoryRepository workHistoryRepository,
+  public DbInitializer(final PersonRepository personRepository, final WorkHistoryRepository workHistoryRepository,
       final EducationRepository educationRepository, final RefDegreeRepository refDegreeRepository, final SkillsRepository skillsRepository,
       final RefCertificationRepository refCertificationRepository) {
-    this.employeeRepository = employeeRepository;
+    this.personRepository = personRepository;
     this.workHistoryRepository = workHistoryRepository;
     this.educationRepository = educationRepository;
     this.refDegreeRepository = refDegreeRepository;
@@ -50,7 +50,7 @@ public class DbInitializer implements CommandLineRunner {
 
   @Override
   public void run(final String... strings) throws Exception {
-    this.employeeRepository.deleteAll();
+    this.personRepository.deleteAll();
     this.workHistoryRepository.deleteAll();
     this.educationRepository.deleteAll();
     this.refCertificationRepository.deleteAll();
@@ -58,19 +58,17 @@ public class DbInitializer implements CommandLineRunner {
     this.refDegreeRepository.deleteAll();
 
     Date creationDate = new Date();
-    Person employee = new Person("Jarrett", "Garner", "Horton", "5555555555", "5555555555", "Software Engineer 1",
+    Person person = new Person("Jarrett", "Garner", "Horton", "5555555555", "5555555555", "Software Engineer 1",
         "123 Test Street", "jhorton@whiteboardfederal.com", creationDate);
     WorkHistory workHistory = new WorkHistory(1L, "Anthem Inc.", "Data Center Intern", creationDate, creationDate);
     Education education = new Education(1L, "Bridgewater College", "CS Bachelor");
     RefCertification refCertification = new RefCertification("AWS: Practictioner", "Some AMAZON THING", 3);
-    Skills skills = new Skills(1L, 1L, 10.5);
 
-    this.employeeRepository.save(employee);
+    this.personRepository.save(person);
     this.workHistoryRepository.save(workHistory);
     this.educationRepository.save(education);
     this.refCertificationRepository.save(refCertification);
-    this.skillsRepository.save(skills);
 
-    System.out.println(" -- Database has been initialized with Employee and WorkHistory");
+    System.out.println(" -- Database has been initialized with Person and WorkHistory");
   }
 }

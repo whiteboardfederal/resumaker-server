@@ -11,8 +11,8 @@ public class Certification {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    @JoinColumn(name = "person_id")
+    private Person person;
 
     private Date dateCertified;
 
@@ -28,12 +28,12 @@ public class Certification {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Date getDateCertified() {

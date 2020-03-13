@@ -66,8 +66,11 @@ public class Person {
   @PastOrPresent
   @ApiModelProperty(notes = "The date the employee was created in the system")
   private Date creationDate = new Date();
-
+ 
   //One to Many Relations
+  @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
+  private List<Certification> certifications;
+
   @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
   @Fetch(value = FetchMode.SUBSELECT)
   private List<Skills> skills = new ArrayList<Skills>();
@@ -178,6 +181,13 @@ public class Person {
     this.creationDate = creationDate;
   }
 
+  public List<Certification> getCertifications() {
+    return certifications;
+  }
+
+  public void setCertifications(List<Certification> certifications) {
+    this.certifications = certifications;
+  }
   public List<Skills> getSkills() { return skills; }
 
   public void setSkills(List<Skills> skills) {this.skills = skills;}

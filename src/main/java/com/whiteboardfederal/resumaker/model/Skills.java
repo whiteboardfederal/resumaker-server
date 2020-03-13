@@ -10,8 +10,8 @@ public class Skills {
   private Long id;
 
   @ManyToOne(optional = false, fetch = FetchType.LAZY)
-  @JoinColumn(name = "employee_id")
-  private Employee employee;
+  @JoinColumn(name = "person_id")
+  private Person person;
 
 //  uncomment once RefSkill is committed.
 //  @OneToOne
@@ -26,11 +26,11 @@ public class Skills {
   }
 
   public Skills(
-          Employee employee,
+          Person person,
 //          RefSkill refSkill,
           double yearsOfExperience
   ) {
-    this.employee = employee;
+    this.person = person;
 //    this.refSkill = refSkill;
     this.yearsOfExperience = yearsOfExperience;
   }
@@ -43,12 +43,12 @@ public class Skills {
     this.id = id;
   }
 
-  public Employee getEmployee() {
-    return this.employee;
+  public Person getPerson() {
+    return this.person;
   }
 
-  public void setEmployee(Employee employeeId) {
-    this.employee = employee;
+  public void setPerson(Person personId) {
+    this.person = person;
   }
 
 //  public Long getSkill() { return this.refSkill; }

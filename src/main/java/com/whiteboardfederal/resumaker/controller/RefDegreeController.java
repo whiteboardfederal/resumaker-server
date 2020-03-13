@@ -2,7 +2,7 @@ package com.whiteboardfederal.resumaker.controller;
 
 import com.whiteboardfederal.resumaker.model.RefDegree;
 import com.whiteboardfederal.resumaker.repository.RefDegreeRepository;
-import com.whiteboardfederal.resumaker.utils.EntityMissingException;
+import com.whiteboardfederal.resumaker.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,8 +24,8 @@ class RefDegreeController {
   }
 
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  RefDegree get(@PathVariable final long id) {
-    return RefDegreeRepository.findById(id).orElseThrow(() -> new EntityMissingException("RefDegree", id));
+  RefDegree get(@PathVariable final long id) throws EntityNotFoundException {
+    return RefDegreeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("RefDegree", String.valueOf(id)));
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

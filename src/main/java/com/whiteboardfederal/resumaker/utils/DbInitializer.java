@@ -9,6 +9,8 @@ import com.whiteboardfederal.resumaker.model.Person;
 import com.whiteboardfederal.resumaker.repository.PersonRepository;
 import com.whiteboardfederal.resumaker.model.WorkHistory;
 import com.whiteboardfederal.resumaker.repository.WorkHistoryRepository;
+import com.whiteboardfederal.resumaker.model.RefCertification;
+import com.whiteboardfederal.resumaker.repository.RefCertificationRepository;
 import com.whiteboardfederal.resumaker.model.Skills;
 import com.whiteboardfederal.resumaker.repository.SkillsRepository;
 
@@ -31,16 +33,19 @@ public class DbInitializer implements CommandLineRunner {
   private final PersonRepository employeeRepository;
   private final WorkHistoryRepository workHistoryRepository;
   private final EducationRepository educationRepository;
+  private final RefCertificationRepository refCertificationRepository;
   private final RefDegreeRepository refDegreeRepository;
   private final SkillsRepository skillsRepository;
 
   public DbInitializer(final EmployeeRepository employeeRepository, final WorkHistoryRepository workHistoryRepository,
-      final EducationRepository educationRepository, final RefDegreeRepository refDegreeRepository, final SkillsRepository skillsRepository) {
+      final EducationRepository educationRepository, final RefDegreeRepository refDegreeRepository, final SkillsRepository skillsRepository,
+      final RefCertificationRepository refCertificationRepository) {
     this.employeeRepository = employeeRepository;
     this.workHistoryRepository = workHistoryRepository;
     this.educationRepository = educationRepository;
     this.refDegreeRepository = refDegreeRepository;
     this.skillsRepository = skillsRepository;
+    this.refCertificationRepository = refCertificationRepository;
   }
 
   @Override
@@ -48,6 +53,7 @@ public class DbInitializer implements CommandLineRunner {
     this.employeeRepository.deleteAll();
     this.workHistoryRepository.deleteAll();
     this.educationRepository.deleteAll();
+    this.refCertificationRepository.deleteAll();
     this.skillsRepository.deleteAll();
     this.refDegreeRepository.deleteAll();
 
@@ -56,11 +62,13 @@ public class DbInitializer implements CommandLineRunner {
         "123 Test Street", "jhorton@whiteboardfederal.com", creationDate);
     WorkHistory workHistory = new WorkHistory(1L, "Anthem Inc.", "Data Center Intern", creationDate, creationDate);
     Education education = new Education(1L, "Bridgewater College", "CS Bachelor");
+    RefCertification refCertification = new RefCertification("AWS: Practictioner", "Some AMAZON THING", 3);
     Skills skills = new Skills(1L, 1L, 10.5);
 
     this.employeeRepository.save(employee);
     this.workHistoryRepository.save(workHistory);
     this.educationRepository.save(education);
+    this.refCertificationRepository.save(refCertification);
     this.skillsRepository.save(skills);
 
     System.out.println(" -- Database has been initialized with Employee and WorkHistory");

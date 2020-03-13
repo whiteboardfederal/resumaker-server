@@ -1,11 +1,10 @@
 package com.whiteboardfederal.resumaker.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -13,6 +12,8 @@ import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.lang.Nullable;
 
 import io.swagger.annotations.ApiModel;
@@ -65,6 +66,11 @@ public class Person {
   @PastOrPresent
   @ApiModelProperty(notes = "The date the employee was created in the system")
   private Date creationDate = new Date();
+
+  //One to Many Relations
+  @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
+  @Fetch(value = FetchMode.SUBSELECT)
+  private List<Skills> skills = new ArrayList<Skills>();
 
   public Person() {
   }
@@ -171,4 +177,8 @@ public class Person {
   public void setCreationDate(Date creationDate) {
     this.creationDate = creationDate;
   }
+
+  public List<Skills> getSkills() { return skills; }
+
+  public void setSkills(List<Skills> skills) {this.skills = skills;}
 }

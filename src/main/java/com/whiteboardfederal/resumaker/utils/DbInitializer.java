@@ -9,6 +9,8 @@ import com.whiteboardfederal.resumaker.model.Person;
 import com.whiteboardfederal.resumaker.repository.PersonRepository;
 import com.whiteboardfederal.resumaker.model.WorkHistory;
 import com.whiteboardfederal.resumaker.repository.WorkHistoryRepository;
+import com.whiteboardfederal.resumaker.model.Skills;
+import com.whiteboardfederal.resumaker.repository.SkillsRepository;
 
 import com.whiteboardfederal.resumaker.model.RefDegree;
 import com.whiteboardfederal.resumaker.repository.RefDegreeRepository;
@@ -30,13 +32,15 @@ public class DbInitializer implements CommandLineRunner {
   private final WorkHistoryRepository workHistoryRepository;
   private final EducationRepository educationRepository;
   private final RefDegreeRepository refDegreeRepository;
+  private final SkillsRepository skillsRepository;
 
   public DbInitializer(final EmployeeRepository employeeRepository, final WorkHistoryRepository workHistoryRepository,
-      final EducationRepository educationRepository, final RefDegreeRepository refDegreeRepository) {
+      final EducationRepository educationRepository, final RefDegreeRepository refDegreeRepository, final SkillsRepository skillsRepository) {
     this.employeeRepository = employeeRepository;
     this.workHistoryRepository = workHistoryRepository;
     this.educationRepository = educationRepository;
     this.refDegreeRepository = refDegreeRepository;
+    this.skillsRepository = skillsRepository;
   }
 
   @Override
@@ -44,6 +48,7 @@ public class DbInitializer implements CommandLineRunner {
     this.employeeRepository.deleteAll();
     this.workHistoryRepository.deleteAll();
     this.educationRepository.deleteAll();
+    this.skillsRepository.deleteAll();
     this.refDegreeRepository.deleteAll();
 
     Date creationDate = new Date();
@@ -51,10 +56,12 @@ public class DbInitializer implements CommandLineRunner {
         "123 Test Street", "jhorton@whiteboardfederal.com", creationDate);
     WorkHistory workHistory = new WorkHistory(1L, "Anthem Inc.", "Data Center Intern", creationDate, creationDate);
     Education education = new Education(1L, "Bridgewater College", "CS Bachelor");
+    Skills skills = new Skills(1L, 1L, 10.5);
 
     this.employeeRepository.save(employee);
     this.workHistoryRepository.save(workHistory);
     this.educationRepository.save(education);
+    this.skillsRepository.save(skills);
 
     System.out.println(" -- Database has been initialized with Employee and WorkHistory");
   }

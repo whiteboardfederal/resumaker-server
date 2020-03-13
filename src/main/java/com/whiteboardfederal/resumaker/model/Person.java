@@ -15,47 +15,61 @@ import javax.validation.constraints.Size;
 
 import org.springframework.lang.Nullable;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
-public class Employee {
+@ApiModel(description = "This is an employee")
+public class Person {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @ApiModelProperty(notes = "The database generated employee ID")
   private Long id;
 
   @NotNull(message = "firstName cannot be null")
   @Size(min = 2, max = 30)
+  @ApiModelProperty(notes = "The first name of the employee")
   private String firstName;
 
   @Nullable
   @Size(min = 2, max = 30)
+  @ApiModelProperty(notes = "The middle name of the employee")
   private String middleName;
 
   @NotNull(message = "lastName cannot be null")
   @Size(min = 2, max = 30)
+  @ApiModelProperty(notes = "The last name of the employee")
   private String lastName;
 
   @Pattern(regexp = "(^$|[0-9]{10})")
+  @ApiModelProperty(notes = "The cell phone number of the employee")
   private String cellPhoneNumber;
 
   @Pattern(regexp = "(^$|[0-9]{10})")
+  @ApiModelProperty(notes = "The work phone number of the employee")
   private String workPhoneNumber;
 
   @Size(min = 1, max = 30)
+  @ApiModelProperty(notes = "The current work title of the employee")
   private String workTitle;
 
   @Size(min = 1, max = 30)
+  @ApiModelProperty(notes = "The current address of the employee")
   private String address;
 
   @NotNull(message = "email cannot be null")
   @Email
+  @ApiModelProperty(notes = "The current email of the employee")
   private String email;
 
   @PastOrPresent
+  @ApiModelProperty(notes = "The date the employee was created in the system")
   private Date creationDate = new Date();
 
-  public Employee() {
+  public Person() {
   }
 
-  public Employee(String firstName, String middleName, String lastName, String cellPhoneNumber,
+  public Person(String firstName, String middleName, String lastName, String cellPhoneNumber,
       String workPhoneNumber, String workTitle, String address, String email, Date creationDate) {
     this.firstName = firstName;
     this.middleName = middleName;

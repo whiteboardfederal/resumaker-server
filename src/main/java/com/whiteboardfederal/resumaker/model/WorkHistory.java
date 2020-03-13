@@ -12,26 +12,36 @@ import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
+@ApiModel(description = "This is an work history entity")
 public class WorkHistory {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @ApiModelProperty(notes = "The database generated work history ID")
   private Long id;
 
   @NotNull(message = "Must be associated with an employee")
+  @ApiModelProperty(notes = "The database generated employee ID")
   private Long employeeId;
 
   @NotNull(message = "Name of the Employer")
   @Size(min = 1)
+  @ApiModelProperty(notes = "Name of the employer")
   private String employerName;
 
   @Size(min = 1, max = 30)
+  @ApiModelProperty(notes = "The employees work title")
   private String workTitle;
 
   @Past
+  @ApiModelProperty(notes = "The work history start date")
   private Date startDate;
 
   @PastOrPresent
+  @ApiModelProperty(notes = "The work history stop date")
   private Date stopDate;
 
   public WorkHistory() {

@@ -40,8 +40,7 @@ class WorkHistoryController {
             @ApiResponse(code = 403, message = "Accessing this work history entities is forbidden"),
             @ApiResponse(code = 404, message = "The work history entities you were trying to reach are not found") })
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    List<WorkHistory> query(@RequestParam(required = false, defaultValue = "false") Boolean includeChildren,
-            @RequestParam Map<String, String> allParams) {
+    List<WorkHistory> query(@RequestParam Map<String, String> allParams) {
         return workHistoryRepository.findAll();
     }
 
@@ -50,8 +49,8 @@ class WorkHistoryController {
             @ApiResponse(code = 401, message = "You are not authorized to create work history entity"),
             @ApiResponse(code = 403, message = "Creating this work history entity is forbidden") })
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    WorkHistory create(@RequestBody WorkHistory p, @RequestHeader Map<String, String> headers) {
-        return workHistoryRepository.save(p);
+    WorkHistory create(@RequestBody WorkHistory workHistory) {
+        return workHistoryRepository.save(workHistory);
     }
 
     @ApiOperation(value = "Allows you to update an work history entity with provided id.")
@@ -60,9 +59,9 @@ class WorkHistoryController {
             @ApiResponse(code = 403, message = "Updating this work history entity is forbidden"),
             @ApiResponse(code = 404, message = "The work history entity you were trying to reach is not found") })
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    WorkHistory overwrite(@RequestBody WorkHistory p, @PathVariable long id) {
-        p.setId(id);
-        return workHistoryRepository.save(p);
+    WorkHistory overwrite(@RequestBody WorkHistory workHistory, @PathVariable long id) {
+        workHistory.setId(id);
+        return workHistoryRepository.save(workHistory);
     }
 
     @ApiOperation(value = "Allows you to delete an work history entity with provided id.")

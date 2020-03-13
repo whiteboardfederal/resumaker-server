@@ -5,12 +5,17 @@ import java.util.Date;
 
 import com.whiteboardfederal.resumaker.model.Education;
 import com.whiteboardfederal.resumaker.repository.EducationRepository;
-import com.whiteboardfederal.resumaker.model.Employee;
-import com.whiteboardfederal.resumaker.repository.EmployeeRepository;
+import com.whiteboardfederal.resumaker.model.Person;
+import com.whiteboardfederal.resumaker.repository.PersonRepository;
 import com.whiteboardfederal.resumaker.model.WorkHistory;
 import com.whiteboardfederal.resumaker.repository.WorkHistoryRepository;
 import com.whiteboardfederal.resumaker.model.RefCertification;
 import com.whiteboardfederal.resumaker.repository.RefCertificationRepository;
+import com.whiteboardfederal.resumaker.model.Skills;
+import com.whiteboardfederal.resumaker.repository.SkillsRepository;
+
+import com.whiteboardfederal.resumaker.model.RefDegree;
+import com.whiteboardfederal.resumaker.repository.RefDegreeRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -25,16 +30,21 @@ import org.springframework.stereotype.Component;
 @Component
 @ConditionalOnProperty(prefix = "spring.dbinit", name = "create", matchIfMissing = true)
 public class DbInitializer implements CommandLineRunner {
-  private final EmployeeRepository employeeRepository;
+  private final PersonRepository employeeRepository;
   private final WorkHistoryRepository workHistoryRepository;
   private final EducationRepository educationRepository;
   private final RefCertificationRepository refCertificationRepository;
+  private final RefDegreeRepository refDegreeRepository;
+  private final SkillsRepository skillsRepository;
 
   public DbInitializer(final EmployeeRepository employeeRepository, final WorkHistoryRepository workHistoryRepository,
-      final EducationRepository educationRepository, final RefCertificationRepository refCertificationRepository) {
+      final EducationRepository educationRepository, final RefDegreeRepository refDegreeRepository, final SkillsRepository skillsRepository,
+      final RefCertificationRepository refCertificationRepository) {
     this.employeeRepository = employeeRepository;
     this.workHistoryRepository = workHistoryRepository;
     this.educationRepository = educationRepository;
+    this.refDegreeRepository = refDegreeRepository;
+    this.skillsRepository = skillsRepository;
     this.refCertificationRepository = refCertificationRepository;
   }
 
@@ -44,18 +54,22 @@ public class DbInitializer implements CommandLineRunner {
     this.workHistoryRepository.deleteAll();
     this.educationRepository.deleteAll();
     this.refCertificationRepository.deleteAll();
+    this.skillsRepository.deleteAll();
+    this.refDegreeRepository.deleteAll();
 
     Date creationDate = new Date();
-    Employee employee = new Employee("Jarrett", "Garner", "Horton", "5555555555", "5555555555", "Software Engineer 1",
+    Person employee = new Person("Jarrett", "Garner", "Horton", "5555555555", "5555555555", "Software Engineer 1",
         "123 Test Street", "jhorton@whiteboardfederal.com", creationDate);
     WorkHistory workHistory = new WorkHistory(1L, "Anthem Inc.", "Data Center Intern", creationDate, creationDate);
     Education education = new Education(1L, "Bridgewater College", "CS Bachelor");
     RefCertification refCertification = new RefCertification("AWS: Practictioner", "Some AMAZON THING", 3);
+    Skills skills = new Skills(1L, 1L, 10.5);
 
     this.employeeRepository.save(employee);
     this.workHistoryRepository.save(workHistory);
     this.educationRepository.save(education);
     this.refCertificationRepository.save(refCertification);
+    this.skillsRepository.save(skills);
 
     System.out.println(" -- Database has been initialized with Employee and WorkHistory");
   }

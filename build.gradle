@@ -32,9 +32,12 @@ dependencies {
 	// implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	// implementation 'org.springframework.cloud:spring-cloud-starter-aws'
-	// implementation 'org.springframework.cloud:spring-cloud-starter-aws-jdbc'
+	
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// AWS
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws'
+	// implementation 'org.springframework.cloud:spring-cloud-starter-aws-jdbc:2.2.1.RELEASE'
 	
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

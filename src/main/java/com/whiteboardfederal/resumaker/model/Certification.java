@@ -20,7 +20,7 @@ public class Certification {
     @ApiModelProperty(notes = "The person tied to the certification")
     private Person person;
 
-    @ApiModelProperty(notes = "The date the certification was achieved")
+    @ApiModelProperty(notes = "The date the certification was certified")
     private Date dateCertified;
 
 //    @OneToOne

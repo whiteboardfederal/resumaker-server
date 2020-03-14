@@ -7,16 +7,22 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
+@ApiModel(description = "The degree tied to a person")
 public class RefDegree {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @NotNull(message = "Must be associated with an employee")
+  @ApiModelProperty(notes = "The value of the degree")
   private String value;
 
   @Size(min = 2, max = 100)
+  @ApiModelProperty(notes = "The description of the degree")
   private String description;
 
   public RefDegree() {

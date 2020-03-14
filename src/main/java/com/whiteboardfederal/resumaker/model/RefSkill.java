@@ -8,18 +8,25 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
+@ApiModel(description = "Skills tied to a person")
 public class RefSkill {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @ApiModelProperty(notes = "The database generated skill ID")
   private Long id;
 
   @NotNull(message = "Name of the RefSkill")
   @Size(min = 1)
+  @ApiModelProperty(notes = "The name of the skill")
   private String name;
 
   @NotNull(message = "Description of RefSkill")
   @Size(min = 1)
+  @ApiModelProperty(notes = "The description of the skill")
   private String desc;
 
   public RefSkill() {

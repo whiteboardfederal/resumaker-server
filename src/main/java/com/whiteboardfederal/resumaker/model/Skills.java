@@ -3,14 +3,20 @@ package com.whiteboardfederal.resumaker.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
+@ApiModel(description = "Skills tied to a person")
 public class Skills {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @ApiModelProperty(notes = "The database generated skills ID")
   private Long id;
 
   @ManyToOne(optional = false, fetch = FetchType.LAZY)
   @JoinColumn(name = "person_id")
+  @ApiModelProperty(notes = "The person tied to the skill")
   private Person person;
 
 //  uncomment once RefSkill is committed.
@@ -20,6 +26,7 @@ public class Skills {
 
   @NotNull(message = "Must associate number of years of experience.")
   @JoinColumn(name = "years_of_experience")
+  @ApiModelProperty(notes = "The number of years for that given skill")
   private double yearsOfExperience;
 
   public Skills() {

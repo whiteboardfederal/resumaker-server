@@ -3,17 +3,24 @@ package com.whiteboardfederal.resumaker.model;
 import javax.persistence.*;
 import java.util.Date;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
+@ApiModel(description = "This certification tied to the person")
 public class Certification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @ApiModelProperty(notes = "The database generated certification ID")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
+    @ApiModelProperty(notes = "The person tied to the certification")
     private Person person;
 
+    @ApiModelProperty(notes = "The date the certification was certified")
     private Date dateCertified;
 
 //    @OneToOne

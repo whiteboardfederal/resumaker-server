@@ -30,3 +30,7 @@ se
 
 ### VS Code ###
 .vscode/
+
+### java ###
+.class
+bin/

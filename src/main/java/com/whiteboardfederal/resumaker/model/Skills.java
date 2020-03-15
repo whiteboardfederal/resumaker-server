@@ -4,19 +4,19 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "skills")
 public class Skills {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @ManyToOne(optional = false, fetch = FetchType.LAZY)
+  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "skills")
   @JoinColumn(name = "person_id")
   private Person person;
 
-//  uncomment once RefSkill is committed.
-//  @OneToOne
-//  @JoinColumn(name = "ref_skill_id")
-//  private RefSkill refSkill;
+  @OneToOne
+  @JoinColumn(name = "ref_skill_id")
+  private RefSkill refSkill;
 
   @NotNull(message = "Must associate number of years of experience.")
   @JoinColumn(name = "years_of_experience")
@@ -27,11 +27,11 @@ public class Skills {
 
   public Skills(
           Person person,
-//          RefSkill refSkill,
+          RefSkill refSkill,
           double yearsOfExperience
   ) {
     this.person = person;
-//    this.refSkill = refSkill;
+    this.refSkill = refSkill;
     this.yearsOfExperience = yearsOfExperience;
   }
 
@@ -51,9 +51,9 @@ public class Skills {
     this.person = person;
   }
 
-//  public Long getSkill() { return this.refSkill; }
-//
-//  public void setSkill(Long refSkill) { this.refSkill = refSkill;  }
+  public RefSkill getSkill() { return this.refSkill; }
+
+  public void setSkill(RefSkill refSkill) { this.refSkill = refSkill;  }
 
   public double getYears() {
     return this.yearsOfExperience;

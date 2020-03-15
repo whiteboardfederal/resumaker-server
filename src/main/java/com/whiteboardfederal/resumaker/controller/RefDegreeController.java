@@ -29,8 +29,8 @@ class RefDegreeController {
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  RefDegree create(@RequestBody RefDegree p) {
-    return RefDegreeRepository.save(p);
+  RefDegree create(@RequestBody RefDegree refDegree) {
+    return RefDegreeRepository.save(refDegree);
   }
 
   @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

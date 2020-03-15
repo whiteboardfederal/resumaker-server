@@ -1,33 +1,22 @@
 package com.whiteboardfederal.resumaker.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.whiteboardfederal.resumaker.exceptions.EntityNotFoundException;
 import com.whiteboardfederal.resumaker.exceptions.InvalidFormException;
 import com.whiteboardfederal.resumaker.model.Person;
 import com.whiteboardfederal.resumaker.services.PersonServices;
-
+import com.whiteboardfederal.resumaker.utils.ApiConstants;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+import java.util.List;
+
 @RestController
-@RequestMapping(value = "/api/v1/person")
+@RequestMapping(value = ApiConstants.API_V1 + "/person")
 class PersonController extends BaseController {
 
     

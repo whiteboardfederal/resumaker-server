@@ -1,9 +1,9 @@
 package com.whiteboardfederal.resumaker.controller;
 
+import com.whiteboardfederal.resumaker.exceptions.EntityNotFoundException;
 import com.whiteboardfederal.resumaker.model.Skills;
 import com.whiteboardfederal.resumaker.repository.SkillsRepository;
-
-import com.whiteboardfederal.resumaker.exceptions.EntityNotFoundException;
+import com.whiteboardfederal.resumaker.utils.ApiConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(value = "/api/v1/Skills")
+@RequestMapping(value = ApiConstants.API_V1 + "/Skills")
 class SkillsController {
 
   @Autowired

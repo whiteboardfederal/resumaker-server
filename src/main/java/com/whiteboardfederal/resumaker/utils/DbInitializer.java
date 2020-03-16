@@ -63,14 +63,14 @@ public class DbInitializer implements CommandLineRunner {
         "123 Test Street", "jhorton@whiteboardfederal.com", creationDate);
     WorkHistory workHistory = new WorkHistory(1L, "Anthem Inc.", "Data Center Intern", creationDate, creationDate);
     Education education = new Education(1L, "Bridgewater College", "CS Bachelor");
-    Skills skills = new Skills(person, refSkill, 5.5);
+//    Skills skills = new Skills(refSkill, 5.5);
 
     this.refCertificationRepository.save(refCertification);
     this.refSkillRepository.save(refSkill);
     this.personRepository.save(person);
     this.workHistoryRepository.save(workHistory);
     this.educationRepository.save(education);
-    this.skillsRepository.save(skills);
+//    this.skillsRepository.save(skills);
 
     System.out.println(" -- Database has been initialized with Person and WorkHistory");
   }

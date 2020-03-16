@@ -2,8 +2,6 @@ package com.whiteboardfederal.resumaker.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -13,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "person")
 @ApiModel(description = "This is an employee")
 public class Person {
   @Id
@@ -65,8 +64,10 @@ public class Person {
   private List<Certification> certifications;
 
   //Many to Many Relations
-  @ManyToMany(mappedBy = "person", fetch = FetchType.LAZY)
-  @Fetch(value = FetchMode.SUBSELECT)
+  @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "skills",
+          joinColumns={@JoinColumn(name="person_id")},
+          inverseJoinColumns={@JoinColumn(name="skills_id")})
   private List<Skills> skills = new ArrayList<Skills>();
 
   public Person() {

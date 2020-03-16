@@ -1,9 +1,9 @@
 package com.whiteboardfederal.resumaker.controller;
 
+import com.whiteboardfederal.resumaker.exceptions.EntityNotFoundException;
 import com.whiteboardfederal.resumaker.model.Skills;
 import com.whiteboardfederal.resumaker.repository.SkillsRepository;
-
-import com.whiteboardfederal.resumaker.exceptions.EntityNotFoundException;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +19,7 @@ class SkillsController {
   @Autowired
   private SkillsRepository skillsRepository;
 
+  @ApiOperation(value = "Allows you to find all skills available.")
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   List<Skills> findAll() {
     return skillsRepository.findAll();

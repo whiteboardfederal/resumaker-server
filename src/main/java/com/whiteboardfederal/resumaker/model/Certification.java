@@ -16,7 +16,7 @@ public class Certification {
 
     private Date dateCertified;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ref_certification_id")
     private RefCertification refCertification;
 

@@ -16,9 +16,9 @@ public class Certification {
 
     private Date dateCertified;
 
-//    @OneToOne
-//    @JoinColumn(name = "ref_certification_id")
-//    private RefCertification refCertification;
+    @OneToOne
+    @JoinColumn(name = "ref_certification_id")
+    private RefCertification refCertification;
 
     public Long getId() {
         return id;
@@ -44,13 +44,13 @@ public class Certification {
         this.dateCertified = dateCertified;
     }
 
-//    public RefCertification getRefCertification() {
-//        return refCertification;
-//    }
-//
-//    public void setRefCertification(RefCertification refCertification) {
-//        this.refCertification = refCertification;
-//    }
+    public RefCertification getRefCertification() {
+        return refCertification;
+    }
+
+    public void setRefCertification(RefCertification refCertification) {
+        this.refCertification = refCertification;
+    }
 }
 
 

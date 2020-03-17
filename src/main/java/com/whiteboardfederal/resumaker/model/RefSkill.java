@@ -1,14 +1,13 @@
 package com.whiteboardfederal.resumaker.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
+@Table(name = "ref_skills")
 public class RefSkill {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +20,10 @@ public class RefSkill {
   @NotNull(message = "Description of RefSkill")
   @Size(min = 1)
   private String desc;
+
+  //One to Many Relations
+  @OneToMany(mappedBy = "refSkill")
+  Set<Skills> skills;
 
   public RefSkill() {
   }
@@ -53,5 +56,9 @@ public class RefSkill {
   public void setDesc(String desc) {
     this.desc = desc;
   }
+
+  public Set<Skills> getSkills() { return skills;  }
+
+  public void setSkills(Set<Skills> skills) { this.skills = skills; }
 
 }

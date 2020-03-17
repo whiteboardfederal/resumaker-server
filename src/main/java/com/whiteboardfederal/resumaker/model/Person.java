@@ -1,25 +1,18 @@
 package com.whiteboardfederal.resumaker.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.*;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.lang.Nullable;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table(name = "person")
 @ApiModel(description = "This is an employee")
 public class Person {
   @Id
@@ -73,7 +66,7 @@ public class Person {
 
   @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
   @Fetch(value = FetchMode.SUBSELECT)
-  private List<Skills> skills = new ArrayList<Skills>();
+  private List<Skills> skills;
 
   public Person() {
   }

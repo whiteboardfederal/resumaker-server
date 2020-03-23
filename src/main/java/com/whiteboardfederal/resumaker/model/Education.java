@@ -12,30 +12,30 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@ApiModel(description = "Education for an Employee")
+@ApiModel(description = "Education for an Person")
 public class Education {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @ApiModelProperty(notes = "The database generated education ID")
   private Long id;
 
-  @NotNull(message = "Must be associated with an employee")
-  @ApiModelProperty(notes = "The employeeId associated with employee")
-  private Long employeeId;
+  @NotNull(message = "Must be associated with an person")
+  @ApiModelProperty(notes = "The personId associated with person")
+  private Long personId;
 
   @Size(min = 2, max = 40)
-  @ApiModelProperty(notes = "The school the employee attended")
+  @ApiModelProperty(notes = "The school the person attended")
   private String school;
 
   @Size(min = 2, max = 40)
-  @ApiModelProperty(notes = "The degree received from the school the employee attended")
+  @ApiModelProperty(notes = "The degree received from the school the person attended")
   private String degree;
 
   public Education() {
   }
 
-  public Education(Long employeeId, String school, String degree) {
-    this.employeeId = employeeId;
+  public Education(Long personId, String school, String degree) {
+    this.personId = personId;
     this.school = school;
     this.degree = degree;
   }
@@ -48,12 +48,12 @@ public class Education {
     this.id = id;
   }
 
-  public Long getEmployeeId() {
-    return this.employeeId;
+  public Long getPersonId() {
+    return this.personId;
   }
 
-  public void setEmployeeId(Long employeeId) {
-    this.employeeId = employeeId;
+  public void setPersonId(Long personId) {
+    this.personId = personId;
   }
 
   public String getSchool() {

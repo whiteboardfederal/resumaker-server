@@ -20,51 +20,51 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@ApiModel(description = "This is an employee")
+@ApiModel(description = "This is an person")
 public class Person {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @ApiModelProperty(notes = "The database generated employee ID")
+  @ApiModelProperty(notes = "The database generated person ID")
   private Long id;
 
   @NotNull(message = "firstName cannot be null")
   @Size(min = 2, max = 30)
-  @ApiModelProperty(notes = "The first name of the employee")
+  @ApiModelProperty(notes = "The first name of the person")
   private String firstName;
 
   @Nullable
   @Size(min = 2, max = 30)
-  @ApiModelProperty(notes = "The middle name of the employee")
+  @ApiModelProperty(notes = "The middle name of the person")
   private String middleName;
 
   @NotNull(message = "lastName cannot be null")
   @Size(min = 2, max = 30)
-  @ApiModelProperty(notes = "The last name of the employee")
+  @ApiModelProperty(notes = "The last name of the person")
   private String lastName;
 
   @Pattern(regexp = "(^$|[0-9]{10})")
-  @ApiModelProperty(notes = "The cell phone number of the employee")
+  @ApiModelProperty(notes = "The cell phone number of the person")
   private String cellPhoneNumber;
 
   @Pattern(regexp = "(^$|[0-9]{10})")
-  @ApiModelProperty(notes = "The work phone number of the employee")
+  @ApiModelProperty(notes = "The work phone number of the person")
   private String workPhoneNumber;
 
   @Size(min = 1, max = 30)
-  @ApiModelProperty(notes = "The current work title of the employee")
+  @ApiModelProperty(notes = "The current work title of the person")
   private String workTitle;
 
   @Size(min = 1, max = 30)
-  @ApiModelProperty(notes = "The current address of the employee")
+  @ApiModelProperty(notes = "The current address of the person")
   private String address;
 
   @NotNull(message = "email cannot be null")
   @Email
-  @ApiModelProperty(notes = "The current email of the employee")
+  @ApiModelProperty(notes = "The current email of the person")
   private String email;
 
   @PastOrPresent
-  @ApiModelProperty(notes = "The date the employee was created in the system")
+  @ApiModelProperty(notes = "The date the person was created in the system")
   private Date creationDate = new Date();
  
   //One to Many Relations

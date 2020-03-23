@@ -13,7 +13,7 @@ public class RefDegree {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @NotNull(message = "Must be associated with an employee")
+  @NotNull(message = "Must be associated with an person")
   private String value;
 
   @Size(min = 2, max = 100)

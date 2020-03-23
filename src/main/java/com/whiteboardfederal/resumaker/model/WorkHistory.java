@@ -23,9 +23,9 @@ public class WorkHistory {
   @ApiModelProperty(notes = "The database generated work history ID")
   private Long id;
 
-  @NotNull(message = "Must be associated with an employee")
-  @ApiModelProperty(notes = "The database generated employee ID")
-  private Long employeeId;
+  @NotNull(message = "Must be associated with an person")
+  @ApiModelProperty(notes = "The database generated person ID")
+  private Long personId;
 
   @NotNull(message = "Name of the Employer")
   @Size(min = 1)
@@ -33,7 +33,7 @@ public class WorkHistory {
   private String employerName;
 
   @Size(min = 1, max = 30)
-  @ApiModelProperty(notes = "The employees work title")
+  @ApiModelProperty(notes = "The persons work title")
   private String workTitle;
 
   @Past
@@ -47,8 +47,8 @@ public class WorkHistory {
   public WorkHistory() {
   }
 
-  public WorkHistory(Long employeeId, String employerName, String workTitle, Date startDate, Date stopDate) {
-    this.employeeId = employeeId;
+  public WorkHistory(Long personId, String employerName, String workTitle, Date startDate, Date stopDate) {
+    this.personId = personId;
     this.employerName = employerName;
     this.workTitle = workTitle;
     this.startDate = startDate;
@@ -63,12 +63,12 @@ public class WorkHistory {
     this.id = id;
   }
 
-  public Long getEmployeeId() {
-    return this.employeeId;
+  public Long getPersonId() {
+    return this.personId;
   }
 
-  public void setEmployeeId(Long employeeId) {
-    this.employeeId = employeeId;
+  public void setPersonId(Long personId) {
+    this.personId = personId;
   }
 
   public String getEmployerName() {

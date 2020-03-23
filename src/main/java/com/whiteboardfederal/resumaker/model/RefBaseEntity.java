@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 @MappedSuperclass
 public class RefBaseEntity extends BaseEntity {
   
-  @NotNull(message = "Must be associated with an employee")
+  @NotNull(message = "Must be associated with an person")
   @Column(name="value")
   private String value;
 

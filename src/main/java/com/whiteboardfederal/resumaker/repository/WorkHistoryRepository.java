@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WorkHistoryRepository extends JpaRepository<WorkHistory, Long> {
 
-  // Find all work history with a certain employee id
-  public List<WorkHistory> findByEmployeeId(Long employeeId);
+  // Find all work history with a certain person id
+  public List<WorkHistory> findByPersonId(Long personId);
 
 }

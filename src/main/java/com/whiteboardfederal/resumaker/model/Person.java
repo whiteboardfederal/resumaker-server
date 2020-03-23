@@ -66,7 +66,7 @@ public class Person {
   @PastOrPresent
   @ApiModelProperty(notes = "The date the employee was created in the system")
   private Date creationDate = new Date();
- 
+
   //One to Many Relations
   @OneToMany(mappedBy = "person", fetch = FetchType.LAZY)
   private List<Certification> certifications;
